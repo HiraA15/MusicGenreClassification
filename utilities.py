@@ -17,11 +17,11 @@ if GENRE_DIR is None or GENRE_DIR is "":
     sys.exit(1)
 
 elif TEST_DIR is None or TEST_DIR is "":
-    print "Please set TEST_DIR in config.cfg" 
-    sys.exit(1)    
+    print "Please set TEST_DIR in config.cfg"
+    sys.exit(1)
 
 elif GENRE_LIST is None or len(GENRE_LIST)==0:
-    print "Please set GENRE_LIST in config.cfg" 
+    print "Please set GENRE_LIST in config.cfg"
     sys.exit(1)
 
 else:
@@ -30,7 +30,7 @@ else:
     print "TEST_DIR ==> ", TEST_DIR
     print "GENRE_LIST ==> "," || ".join(x for x in GENRE_LIST)
 
-    
+
 DATA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data")
 
 CHART_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), "graphs")
@@ -63,7 +63,7 @@ def convert_dataset_to_wav(file_name):
                 os.remove(path)
 
     stop = timeit.default_timer()
-    print "Conversion time = ", (stop - start) 
+    print "Conversion time = ", (stop - start)
 
 def plot_confusion_matrix(cm, genre_list, name, title):
     pylab.clf()
@@ -77,8 +77,8 @@ def plot_confusion_matrix(cm, genre_list, name, title):
     pylab.title(title)
     pylab.colorbar()
     pylab.grid(False)
-    pylab.xlabel('Predicted class', fontsize = 20)
-    pylab.ylabel('True class', fontsize = 20)
+    pylab.xlabel('Predicted genre', fontsize = 20)
+    pylab.ylabel('', fontsize = 20)
     pylab.grid(False)
     pylab.savefig(os.path.join(CHART_DIR, "confusion_matrix_%s.png" % name), bbox_inches="tight")
 
@@ -91,8 +91,8 @@ def plot_roc_curves(auc_score, name, tpr, fpr, label=None):
     pylab.fill_between(fpr, tpr, alpha=0.5)
     pylab.xlim([0.0, 1.0])
     pylab.ylim([0.0, 1.0])
-    pylab.xlabel('False Positive Rate')
-    pylab.ylabel('True Positive Rate')
+    pylab.xlabel('False Positive')
+    pylab.ylabel('True Positive')
     pylab.title('ROC curve (AUC = %0.2f) / %s' %(auc_score, label), verticalalignment="bottom")
     pylab.legend(loc="lower right")
     filename = name.replace(" ", "_")
