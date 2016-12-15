@@ -74,14 +74,13 @@
 
     ![](https://github.com/HiraA15/MusicGenreClassification/blob/master/graphs/scatterPlot.png)
 
-2. Can a neural network be more effective than a model using human computations?
+              2. Can a neural network be more effective than a model using human computations?
 
-It seems that the answer is no. Although using the Fast Fourier transform in conjunction with the Mel Frequency Cepstrum Coefficient proved very useful. I had my program generate MFCC features from the GTZAN audio files and save them onto my disk speeding up performance. After, I trained and saved the model in order to satisfy my neural network. The stored model was the only model used for testing since I didn’t change audio files.
+  It seems that the answer is no. Although using the Fast Fourier transform in conjunction with the Mel Frequency Cepstrum Coefficient proved very useful. I had my program generate MFCC features from the GTZAN audio files and save them onto my disk speeding up performance. After, I trained and saved the model in order to satisfy my neural network. The stored model was the only model used for testing since I didn’t change audio files.
 
-Training the model took an enormous amount of time. It classified material except it did so defectively sometimes. The model had a tendency to lump jazz and country on occasion. Further investigation showed that because there were similarities between the thresholds and the frequencies, the training model would need more training data in order to differentiate the two. In categorizing other genres the MFCC and FFT did perfect.
+  Training the model took an enormous amount of time. It classified material except it did so defectively sometimes. The model had a tendency to lump jazz and country on occasion. Further investigation showed that because there were similarities between the thresholds and the frequencies, the training model would need more training data in order to differentiate the two. In categorizing other genres the MFCC and FFT did perfect.
 
-I generated a series of graphs including a confusion matrix, spectrogram, and a receiver operating characteristic (ROC) curve to show the differences that genres have. A confusion matrix judges the overall performance of an algorithm. An ROC curve is used to illustrate the performance of a classifier system while the threshold is varied. A spectrogram is a visual representation of frequencies.
-</code></pre>
+  I generated a series of graphs including a confusion matrix, spectrogram, and a receiver operating characteristic (ROC) curve to show the differences that genres have. A confusion matrix judges the overall performance of an algorithm. An ROC curve is used to illustrate the performance of a classifier system while the threshold is varied. A spectrogram is a visual representation of frequencies.
 
 <p><img src="https://github.com/HiraA15/MusicGenreClassification/blob/master/graphs/countryROC.jpg" alt=""></p>
 
@@ -91,11 +90,11 @@ I generated a series of graphs including a confusion matrix, spectrogram, and a 
 
 <p><img src="https://github.com/HiraA15/MusicGenreClassification/blob/master/graphs/spectroGraph.jpg" alt=""></p>
 
-<pre><code>3. Which algorithm was most efficient?
+            3. Which algorithm was most efficient?
 
-The algorithm that was the most efficient was the K-Means algorithm. Not only did it run through the computations fast, but the more data I fed into it the quicker it was in classifying test songs. While the MFCC and FFT were more powerful they were by no means more efficient. It took a few hours to train the model and classifying one song had to be compared to everything in the model.
-
-Results were varied according to classification difficulties. As mentioned before, the k-means had trouble with categorizing metal rock and punk rock. The MFCC had trouble with jazz and country. Because the genres have overlapping frequencies, and amplitudes, it might be that a genre is not perfectly classifiable when thresholds overlap. The spectrogram and the ROC curve graphs prove that threshold overlapping makes classifications challenging.
+  The algorithm that was the most efficient was the K-Means algorithm. Not only did it run through the computations fast, but the more data I fed into it the quicker it was in classifying test songs. While the MFCC and FFT were more powerful they were by no means more efficient. It took a few hours to train the model and classifying one song had to be compared to everything in the model.
+  
+  Results were varied according to classification difficulties. As mentioned before, the k-means had trouble with categorizing metal rock and punk rock. The MFCC had trouble with jazz and country. Because the genres have overlapping frequencies, and amplitudes, it might be that a genre is not perfectly classifiable when thresholds overlap. The spectrogram and the ROC curve graphs prove that threshold overlapping makes classifications challenging.
 </code></pre>
 
 <h1>
