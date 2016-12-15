@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Music Genre Classification by HiraA15</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Music Genre Classification</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/HiraA15/MusicGenreClassification" class="btn">View on GitHub</a>
+      <a href="https://github.com/HiraA15/MusicGenreClassification/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/HiraA15/MusicGenreClassification/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>Abstract</p>
+
+<pre><code>The purpose of this project is to use neural network programming to develop an artificially intelligent program capable of classifying genre’s of music. The audio file my analysis is performed on is the GTZAN audio file. The k-means, fast fourier transform and MFCC algorithms are utilized. Output will be in the form of graphs and precise categories determined.
+</code></pre>
+
+<p>Problem Description</p>
+
+<pre><code>    Music can be found in every culture and corner of the world. It has been around for as long as mankind has been capable of making a tune. Music may be classified into genre’s. What differentiates a genre are the amplitude and frequency, rhythm and form. I postulate that I will be able to determine the genre (musical category) of a song using its amplitude and frequency.
+</code></pre>
+
+<p>Method</p>
+
+<pre><code>    K-Means (knn): the algorithm which will cluster data according to similarities. In this scenario, based on the amplitudes and known amplitudes of genres. I used this to generate a k-means scatter plot which shows where genre’s fall.
+
+    Fast Fourier Transform (FFT): the algorithm computes the sinusoidal frequency and phase concepts of a sequence. It essentially will compute a frequency that can be used in MFCC. This was used to generate a spectrogram.
+
+    Mel Frequency Cepstral Coefficient (MFCC): the computation that can use the FFT to compute a linear cosine transform of a log power spectrum. In python scikits.talkbox contains an implementation of MFC that I will directly use. I used this algorithm primarily to generate a spectrogram.
+
+    GTZAN dataset: The dataset is used as a training and testing set. It consists of 1000 audio files, containing 10 genres, that are represented by 100 tracks each 30 seconds long. All tracks are in .au format which are converted into .wav format.
+</code></pre>
+
+<p>Results</p>
+
+<pre><code>    1. Can K-Means clustering compute genres?
+
+    Yes, it can. In fact it does so accurately. What was first done was to calculate the Euclidian distance between two n-dimensions. This differentiates categories. By calculating the k shortest distance and storing it in a dictionary, I obtained indices needed to categorize the data. In order to classify songs, the k closest song was chosen with it’s fold features and its index. The genre was then decided on. If there was a tie between genres, the furthest point was deleted and recursion ensued. 
+
+    Using my results, I produced a scatter plot to show where each genre lies. While metal and indie are clear outliers and easy to classify, the algorithm had a hard time differentiating between metal rock and punk rock. This was shown when I tested song13 and song17 from the GTZAN testing set.
+
+    ![](https://github.com/HiraA15/MusicGenreClassification/blob/master/graphs/scatterPlot.png)
+
+2. Can a neural network be more effective than a model using human computations?
+
+It seems that the answer is no. Although using the Fast Fourier transform in conjunction with the Mel Frequency Cepstrum Coefficient proved very useful. I had my program generate MFCC features from the GTZAN audio files and save them onto my disk speeding up performance. After, I trained and saved the model in order to satisfy my neural network. The stored model was the only model used for testing since I didn’t change audio files.
+
+Training the model took an enormous amount of time. It classified material except it did so defectively sometimes. The model had a tendency to lump jazz and country on occasion. Further investigation showed that because there were similarities between the thresholds and the frequencies, the training model would need more training data in order to differentiate the two. In categorizing other genres the MFCC and FFT did perfect.
+
+I generated a series of graphs including a confusion matrix, spectrogram, and a receiver operating characteristic (ROC) curve to show the differences that genres have. A confusion matrix judges the overall performance of an algorithm. An ROC curve is used to illustrate the performance of a classifier system while the threshold is varied. A spectrogram is a visual representation of frequencies.
+</code></pre>
+
+<p><img src="https://github.com/HiraA15/MusicGenreClassification/blob/master/graphs/countryROC.jpg" alt=""></p>
+
+<p><img src="https://github.com/HiraA15/MusicGenreClassification/blob/master/graphs/jazzROC.jpg" alt=""></p>
+
+<p><img src="https://github.com/HiraA15/MusicGenreClassification/blob/master/graphs/confusionMatrix.png" alt=""></p>
+
+<p><img src="https://github.com/HiraA15/MusicGenreClassification/blob/master/graphs/spectroGraph.jpg" alt=""></p>
+
+<pre><code>3. Which algorithm was most efficient?
+
+The algorithm that was the most efficient was the K-Means algorithm. Not only did it run through the computations fast, but the more data I fed into it the quicker it was in classifying test songs. While the MFCC and FFT were more powerful they were by no means more efficient. It took a few hours to train the model and classifying one song had to be compared to everything in the model.
+
+Results were varied according to classification difficulties. As mentioned before, the k-means had trouble with categorizing metal rock and punk rock. The MFCC had trouble with jazz and country. Because the genres have overlapping frequencies, and amplitudes, it might be that a genre is not perfectly classifiable when thresholds overlap. The spectrogram and the ROC curve graphs prove that threshold overlapping makes classifications challenging.
+</code></pre>
+
+<p>Conclusion</p>
+
+<pre><code>    My strategy of using three different algorithms to determine a musical genre was a bit overwhelming. In essence, all three determine genres using different modes. While my neural network proved less adept than the k-means model, I intend to use a larger selection of audio files to improve system accuracy. Future work will include more in depth research and a way to utilize different python tools.
+</code></pre>
+
+<p>Sources</p>
+
+<pre><code>    Lerch, Alexander. Audio Content Analysis. N.p., n.d. Web. 19 Sept. 2016. 
+    Tzanetakis, George, Georg Essl, and Perry Cook. "Analysis of Musical Audio Signals." Computational Auditory Scene Analysis (2011): n. pag. Web. 16 Oct. 2016. 
+    Clark, Sam, Danny Park, and Adrien Guerard. "Sentiment Classification Using Machine Learning Techniques." International Journal of Science and Research (IJSR) 5.4 (2012): 819-21. 9 May 2012. Web. 18 Oct. 2016. 
+    "Sklearn.cluster.KMeans¶." Sklearn.cluster.KMeans — Scikit-learn 0.18.1 Documentation. N.p., n.d. Web. 4 Nov. 2016. 
+    Lutter, Michael. "Mel-Frequency Cepstral Coefficients." The Speech Recognition Wiki. N.p., 25 Nov. 2014. Web. 6 Dec. 2016. 
+    "Discrete Fourier Transform (numpy.fft)¶." Discrete Fourier Transform (numpy.fft) — NumPy V1.11 Manual. N.p., n.d. Web. 27 Oct. 2016.
+    Irealva. "Irealva/music-genre-classifier." GitHub. GitHub, 19 Nov. 2014. Web. 12 Dec. 2016.
+    "Jazdev (Jasdev Singh)." GitHub. GitHub, n.d. Web. 12 Dec. 2016. 
+    Babak0032. "Babak0032/Learning-Music-genres-." GitHub. GitHub, 03 June 2014. Web. 12 Dec. 2016. 
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/HiraA15/MusicGenreClassification">Music Genre Classification</a> is maintained by <a href="https://github.com/HiraA15">HiraA15</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
